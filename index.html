@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youth Ablaze -2025 Registration</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Youth Ablaze -2025 Registration</h2>
+        <p>Join us for an unforgettable experience of faith, growth, and fellowship.</p>
+        <p style="color: #e25909;"><b><i>#Provoking Our Generation To Conquer The World For Jesus</i></b></p>
+
+        <form id="registrationForm" method="POST">
+            <!-- Personal Info -->
+            <div class="section">
+                <h2>Personal Info</h2>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required />
+
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" required />
+
+                <label for="age">Age</label>
+                <select id="age" name="age" required>
+          <option value="">Select...</option>
+          <option value="13-17">13 - 17</option>
+          <option value="18-22">18 - 22</option>
+          <option value="23-27">23 - 27</option>
+          <option value="28-35">28 - 35</option>
+        </select>
+
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+          <option value="">Select...</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+            </div>
+
+            <!-- Church Info -->
+            <div class="section">
+                <h2>Church Info</h2>
+                <label for="church">Name of your church</label>
+                <input type="text" id="church" name="church" required />
+
+                <label>Role in your church? (Select all that apply)</label>
+                <div class="dropdown">
+                    <div class="dropdown-btn" id="roleDropdownBtn">Select roles...</div>
+                    <div class="dropdown-content" id="roleDropdownContent">
+                        <label><input type="checkbox" name="role[]" value="Accommodation"> Accommodation</label>
+                        <label><input type="checkbox" name="role[]" value="Catering"> Catering</label>
+                        <label><input type="checkbox" name="role[]" value="Choir"> Choir</label>
+                        <label><input type="checkbox" name="role[]" value="Hospitality"> Hospitality</label>
+                        <label><input type="checkbox" name="role[]" value="Intercessor"> Intercessor</label>
+                        <label><input type="checkbox" name="role[]" value="Interpreter"> Interpreter</label>
+                        <label><input type="checkbox" name="role[]" value="Media/Technical"> Media / Technical</label>
+                        <label><input type="checkbox" name="role[]" value="Missions"> Missions</label>
+                        <label><input type="checkbox" name="role[]" value="Protocol"> Protocol</label>
+                        <label><input type="checkbox" name="role[]" value="Sanitation"> Sanitation</label>
+                        <label><input type="checkbox" name="role[]" value="Sanitization"> Sanitization</label>
+                        <label><input type="checkbox" name="role[]" value="SundaySchool"> Sunday School Ministry</label>
+                        <label><input type="checkbox" name="role[]" value="Usher"> Usher</label>
+                        <label><input type="checkbox" name="role[]" value="YouthLeader"> Youth Leader</label>
+                        <label><input type="checkbox" name="role[]" value="YouthPastor"> Youth Pastor</label>
+                        <label><input type="checkbox" name="role[]" value="Other"> Other</label>
+                    </div>
+                </div>
+
+                <label for="pastorname">Pastor's name</label>
+                <input type="text" id="pastorname" name="pastorname" />
+
+                <label for="pastornumber">Pastor's Phone number</label>
+                <input type="tel" id="pastornumber" name="pastornumber" />
+            </div>
+
+            <!-- Accommodation -->
+            <div class="section">
+                <h2>Accommodation</h2>
+                <label for="accommodation">Accommodation</label>
+                <select id="accommodation" name="accommodation" required>
+          <option value="">-- Select --</option>
+          <option value="boarder">Boarder</option>
+          <option value="dayscholar">Day Scholar</option>
+        </select>
+
+                <!-- Payment Section -->
+                <div class="form-group" id="payment-section" style="display: none;">
+                    <label>Payment Method</label>
+                    <select id="payment-method" name="payment_method">
+            <option value="">-- Select --</option>
+            <option value="mpesa">M-Pesa</option>
+            <option value="cash">Cash</option>
+          </select>
+
+                    <input type="text" id="mpesa-code" name="mpesa_code" placeholder="Enter M-Pesa Code" style="display: none; margin-top: 10px;">
+                </div>
+            </div>
+
+            <!-- Emergency -->
+            <div class="section">
+                <h2>Emergency Contact</h2>
+                <label for="Ename">Name</label>
+                <input type="text" id="Ename" name="Ename" required />
+
+                <label for="Ephone">Phone</label>
+                <input type="tel" id="Ephone" name="Ephone" required />
+            </div>
+
+            <!-- Feedback -->
+            <div class="section">
+                <h2>Feedback</h2>
+                <label for="heard">How did you know about the conference?</label>
+                <div class="dropdown">
+                    <div class="dropdown-btn" id="heardDropdownBtn">Select...</div>
+                    <div class="dropdown-content" id="heardDropdownContent">
+                        <label><input type="checkbox" name="heard[]" value="ChurchAnnouncement"> Church Announcement</label>
+                        <label><input type="checkbox" name="heard[]" value="Friend"> A Friend</label>
+                        <label><input type="checkbox" name="heard[]" value="Attending"> I've Been Attending</label>
+                        <label><input type="checkbox" name="heard[]" value="SocialMedia"> Social Media</label>
+                        <label><input type="checkbox" name="heard[]" value="RVTV"> RVTV</label>
+                        <label><input type="checkbox" name="heard[]" value="Other"> Other</label>
+                    </div>
+                </div>
+
+                <label for="message">Why are you excited to attend?</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+            </div>
+
+            <button type="submit">Register Now</button>
+            <div id="successMessage">🎉 Thank you for registering! We’ll contact you soon.</div>
+        </form>
+    </div>
+
+    <script src="functions.js"></script>
+</body>
+
+</html>
