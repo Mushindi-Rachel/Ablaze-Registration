@@ -10,9 +10,11 @@
 
 <body>
     <div class="container">
+        <img src="images\WhatsApp_Image_2025-08-13_at_15.45.58-removebg-preview.png" alt="Youth Ablaze Logo">
         <h2>Youth Ablaze -2025 Registration</h2>
         <p>Join us for an unforgettable experience of faith, growth, and fellowship.</p>
         <p style="color: #e25909;"><b><i>#Provoking Our Generation To Conquer The World For Jesus</i></b></p>
+        <p style="color: #e25909;"><b><i>...2nd Timothy 4:5, Colosians 1:28-29</i></b></p>
 
         <form id="registrationForm" method="POST">
             <!-- Personal Info -->
@@ -25,13 +27,8 @@
                 <input type="tel" id="phone" name="phone" required />
 
                 <label for="age">Age</label>
-                <select id="age" name="age" required>
-          <option value="">Select...</option>
-          <option value="13-17">13 - 17</option>
-          <option value="18-22">18 - 22</option>
-          <option value="23-27">23 - 27</option>
-          <option value="28-35">28 - 35</option>
-        </select>
+                <input type="text" id="age" name="age" required />
+
 
                 <label for="gender">Gender</label>
                 <select id="gender" name="gender" required>
@@ -47,7 +44,7 @@
                 <label for="church">Name of your church</label>
                 <input type="text" id="church" name="church" required />
 
-                <label>Role in your church? (Select all that apply)</label>
+                <!-- <label>Role in your church? (Select all that apply)</label>
                 <div class="dropdown">
                     <div class="dropdown-btn" id="roleDropdownBtn">Select roles...</div>
                     <div class="dropdown-content" id="roleDropdownContent">
@@ -68,7 +65,7 @@
                         <label><input type="checkbox" name="role[]" value="YouthPastor"> Youth Pastor</label>
                         <label><input type="checkbox" name="role[]" value="Other"> Other</label>
                     </div>
-                </div>
+                </div> -->
 
                 <label for="pastorname">Pastor's name</label>
                 <input type="text" id="pastorname" name="pastorname" />
@@ -95,10 +92,13 @@
             <option value="mpesa">M-Pesa</option>
             <option value="cash">Cash</option>
           </select>
-
+                    <input type="text" id="receipt_no" name="receipt_no" placeholder="Enter Receipt Number" style="display: none; margin-top: 10px;">
                     <input type="text" id="mpesa-code" name="mpesa_code" placeholder="Enter M-Pesa Code" style="display: none; margin-top: 10px;">
                 </div>
             </div>
+
+            <label for="allergy">Allergies</label> (specify any allergies if applicable)
+            <input type="text" id="allergy" name="allergy" />
 
             <!-- Emergency -->
             <div class="section">
@@ -111,7 +111,7 @@
             </div>
 
             <!-- Feedback -->
-            <div class="section">
+            <!-- <div class="section">
                 <h2>Feedback</h2>
                 <label for="heard">How did you know about the conference?</label>
                 <div class="dropdown">
@@ -128,10 +128,10 @@
 
                 <label for="message">Why are you excited to attend?</label>
                 <textarea id="message" name="message" rows="4"></textarea>
-            </div>
+            </div> -->
 
             <button type="submit">Register Now</button>
-            <div id="successMessage">🎉 Thank you for registering! We’ll contact you soon.</div>
+            <div id="successMessage">🎉 Thank you for registering for Youth Ablaze - 2025! You are highly welcomed.</div>
         </form>
     </div>
 
