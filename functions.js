@@ -35,9 +35,8 @@ form.addEventListener("submit", async(e) => {
     try {
         await fetch("https://script.google.com/macros/s/AKfycbxXKf7rCXCODBPZPkOwwFsBDRHiuqgmIhCZRoxVZtg7MV5g-RrzVVFNXW5OhlxXhK2Jrg/exec", {
             method: "POST",
-            mode: "no-cors",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(data),
         });
 
         successMessage.style.display = "block";
