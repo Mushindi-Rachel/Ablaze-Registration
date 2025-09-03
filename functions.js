@@ -32,7 +32,7 @@ form.addEventListener("submit", async(e) => {
     const formData = new FormData(form);
 
     try {
-        await fetch("https://script.google.com/macros/s/AKfycby_2fU5SruHA8Y6KjgUqbBX477OLIPUxTm99QN2vLzlHUbO0XczV0cpqFuxPf9iFM5vbA/exec", {
+        await fetch("https://script.google.com/macros/s/AKfycbxvLYvm5nUvFG-ixvnSEgvBeDBZqJByal_rF05dlAxKsnMaeEeriaUUH4NREQgT_gksjw/exec", {
             method: "POST",
             body: formData, // 👈 still sending as FormData
         });
