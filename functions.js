@@ -33,7 +33,7 @@ form.addEventListener("submit", async(e) => {
     const data = Object.fromEntries(formData.entries());
 
     try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbxXKf7rCXCODBPZPkOwwFsBDRHiuqgmIhCZRoxVZtg7MV5g-RrzVVFNXW5OhlxXhK2Jrg/exec", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbxKEUkYFfqIhaQkeFqf54NvwyOcMbA9vm29YM-9a64BVF9gRe7_J5fGQobpqJxOtvvInQ/exec", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -46,7 +46,7 @@ form.addEventListener("submit", async(e) => {
             form.reset();
             paymentSection.style.display = "none";
         } else {
-            alert("❌ Error: " + result.message); // ✅ will now be a readable string
+            alert("❌ Error: " + result.message);
         }
     } catch (err) {
         alert("❌ Network Error: " + err.message);
