@@ -33,16 +33,20 @@ form.addEventListener("submit", async(e) => {
     const data = Object.fromEntries(formData.entries());
 
     try {
-        await fetch("https://script.google.com/macros/s/AKfycbxXKf7rCXCODBPZPkOwwFsBDRHiuqgmIhCZRoxVZtg7MV5g-RrzVVFNXW5OhlxXhK2Jrg/exec", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbxXKf7rCXCODBPZPkOwwFsBDRHiuqgmIhCZRoxVZtg7MV5g-RrzVVFNXW5OhlxXhK2Jrg/exec", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
+            body: formData,
         });
 
-        successMessage.style.display = "block";
-        form.reset();
-        paymentSection.style.display = "none";
+        const result = await response.json();
+        if (result.result === "success") {
+            successMessage.style.display = "block";
+            form.reset();
+            paymentSection.style.display = "none";
+        } else {
+            alert("❌ Error: " + result.message);
+        }
     } catch (err) {
-        alert("Error: " + err.message);
+        alert("❌ Error: " + err.message);
     }
 });
