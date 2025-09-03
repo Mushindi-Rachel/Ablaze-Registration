@@ -35,18 +35,20 @@ form.addEventListener("submit", async(e) => {
     try {
         const response = await fetch("https://script.google.com/macros/s/AKfycbxXKf7rCXCODBPZPkOwwFsBDRHiuqgmIhCZRoxVZtg7MV5g-RrzVVFNXW5OhlxXhK2Jrg/exec", {
             method: "POST",
-            body: formData,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
         });
 
         const result = await response.json();
+
         if (result.result === "success") {
             successMessage.style.display = "block";
             form.reset();
             paymentSection.style.display = "none";
         } else {
-            alert("❌ Error: " + result.message);
+            alert("❌ Error: " + result.message); // ✅ will now be a readable string
         }
     } catch (err) {
-        alert("❌ Error: " + err.message);
+        alert("❌ Network Error: " + err.message);
     }
 });
