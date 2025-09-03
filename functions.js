@@ -30,25 +30,17 @@ form.addEventListener("submit", async(e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
 
     try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbxKEUkYFfqIhaQkeFqf54NvwyOcMbA9vm29YM-9a64BVF9gRe7_J5fGQobpqJxOtvvInQ/exec", {
+        await fetch("https://script.google.com/macros/s/AKfycby_2fU5SruHA8Y6KjgUqbBX477OLIPUxTm99QN2vLzlHUbO0XczV0cpqFuxPf9iFM5vbA/exec", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
+            body: formData, // 👈 still sending as FormData
         });
 
-        const result = await response.json();
-
-        if (result.result === "success") {
-            successMessage.style.display = "block";
-            form.reset();
-            paymentSection.style.display = "none";
-        } else {
-            alert("❌ Error: " + result.message);
-        }
+        successMessage.style.display = "block";
+        form.reset();
+        paymentSection.style.display = "none";
     } catch (err) {
-        alert("❌ Network Error: " + err.message);
+        alert("❌ Error: " + err.message);
     }
 });
