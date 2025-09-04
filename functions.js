@@ -30,24 +30,38 @@ form.addEventListener("submit", async(e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries()); // convert to plain object
 
     try {
-        const response = await fetch(
-            "https://script.google.com/macros/s/AKfycbxvLYvm5nUvFG-ixvnSEgvBeDBZqJByal_rF05dlAxKsnMaeEeriaUUH4NREQgT_gksjw/exec", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
-            }
-        );
+        const response = await fetch("https://script.google.com/macros/s/AKfycbxvLYvm5nUvFG-ixvnSEgvBeDBZqJByal_rF05dlAxKsnMaeEeriaUUH4NREQgT_gksjw/exec", {
+            method: "POST",
+            body: formData,
+        });
 
         const result = await response.json();
-        console.log("✅ Success:", result);
 
-        successMessage.style.display = "block";
-        form.reset();
-        paymentSection.style.display = "none";
+        if (result.result === "success") {
+            Swal.fire({
+                icon: "success",
+                title: "🎉 Registration Successful!",
+                text: "Thank you for registering for Youth Ablaze - 2025! You are highly welcomed.",
+                confirmButtonColor: "#e25909"
+            });
+            form.reset();
+            paymentSection.style.display = "none";
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong: " + result.message,
+                confirmButtonColor: "#e25909"
+            });
+        }
     } catch (err) {
-        alert("❌ Error: " + err.message);
+        Swal.fire({
+            icon: "error",
+            title: "❌ Network Error",
+            text: err.message,
+            confirmButtonColor: "#e25909"
+        });
     }
 });
