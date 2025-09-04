@@ -30,12 +30,19 @@ form.addEventListener("submit", async(e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries()); // convert to plain object
 
     try {
-        await fetch("https://script.google.com/macros/s/AKfycbxvLYvm5nUvFG-ixvnSEgvBeDBZqJByal_rF05dlAxKsnMaeEeriaUUH4NREQgT_gksjw/exec", {
-            method: "POST",
-            body: formData, // 👈 still sending as FormData
-        });
+        const response = await fetch(
+            "https://script.google.com/macros/s/AKfycbxvLYvm5nUvFG-ixvnSEgvBeDBZqJByal_rF05dlAxKsnMaeEeriaUUH4NREQgT_gksjw/exec", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            }
+        );
+
+        const result = await response.json();
+        console.log("✅ Success:", result);
 
         successMessage.style.display = "block";
         form.reset();
