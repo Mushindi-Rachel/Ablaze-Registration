@@ -5,51 +5,59 @@ const paymentMethod = document.getElementById("payment-method");
 const receiptNo = document.getElementById("receipt_no");
 const mpesaCode = document.getElementById("mpesa-code");
 
-// ---- Submit to Google Apps Script ----
+// show/hide payment as before (keep your existing handlers)
+// ...
+
 form.addEventListener("submit", async(e) => {
     e.preventDefault();
 
-    // Tiny front-end validation for boarders:
+    // basic validation for boarders
     if (accommodation.value === "boarder") {
         if (paymentMethod.value === "mpesa" && !mpesaCode.value.trim()) {
-            Swal.fire({ icon: "warning", title: "M-Pesa code required", text: "Please enter your M-Pesa code." });
+            Swal.fire("M-Pesa code required", "Please enter your M-Pesa code.", "warning");
             return;
         }
         if (paymentMethod.value === "cash" && !receiptNo.value.trim()) {
-            Swal.fire({ icon: "warning", title: "Receipt number required", text: "Please enter your cash receipt number." });
+            Swal.fire("Receipt number required", "Please enter your cash receipt number.", "warning");
             return;
         }
     }
 
     const formData = new FormData(form);
 
-    // Nice "submitting..." modal
     Swal.fire({
         title: "Submitting...",
-        text: "Please wait a moment.",
+        text: "Please wait",
         allowOutsideClick: false,
         didOpen: () => Swal.showLoading()
     });
 
     try {
-        const resp = await fetch("https://script.google.com/macros/s/AKfycbwLCsfFzsymg5MJemJsBgGb0JvkgyD8qUHURF_CODKOnaTSG3l9XP2QVbuk11n1PCfEkw/exec", {
+        const resp = await fetch("https://script.google.com/macros/s/AKfycbyrMcfSuLJJMYlsTsyXYGT1c3Vu0A5Ghi8QaX2F0r0VvxuVLAsnp_mvtCb2YY9PS6XZtg/exec", {
             method: "POST",
-            body: formData,
+            body: formData
         });
 
+        // read raw text (safer) and then try JSON.parse
         const text = await resp.text();
         let result;
         try {
             result = JSON.parse(text);
-        } catch {
-            throw new Error(`Unexpected response from server: ${text.substring(0, 200)}`);
+        } catch (parseErr) {
+            // Unexpected response (not JSON)
+            Swal.fire({
+                icon: "error",
+                title: "Unexpected server response",
+                html: `<pre style="text-align:left; white-space:pre-wrap;">${text.substring(0,1000)}</pre>`
+            });
+            return;
         }
 
-        if (result.result === "success") {
+        if (result && result.result === "success") {
             Swal.fire({
                 icon: "success",
                 title: "🎉 Registration Successful!",
-                text: "Thank you for registering for Youth Ablaze - 2025!",
+                text: "Thank you — your registration was submitted!",
                 confirmButtonColor: "#e25909"
             });
             form.reset();
@@ -57,20 +65,20 @@ form.addEventListener("submit", async(e) => {
             receiptNo.style.display = "none";
             mpesaCode.style.display = "none";
         } else {
-            // result.message can be any type; render safely
+            // show whatever server returned (stringify safely)
+            const msg = typeof result.message === "string" ? result.message : JSON.stringify(result.message, null, 2);
             Swal.fire({
                 icon: "error",
-                title: "Oops...",
-                html: `<pre style="text-align:left;white-space:pre-wrap;">${(typeof result.message === "string" ? result.message : JSON.stringify(result.message, null, 2))}</pre>`,
-                confirmButtonColor: "#e25909"
+                title: "Something went wrong",
+                html: `<pre style="text-align:left; white-space:pre-wrap;">${msg}</pre>`
             });
         }
     } catch (err) {
+        // network-level errors: show detailed message
         Swal.fire({
             icon: "error",
-            title: "❌ Network / CORS Error",
-            html: `<pre style="text-align:left;white-space:pre-wrap;">${err.message}</pre>`,
-            confirmButtonColor: "#e25909"
+            title: "Network Error",
+            html: `<pre style="text-align:left; white-space:pre-wrap;">${err && err.message ? err.message : String(err)}</pre>`
         });
     }
 });
