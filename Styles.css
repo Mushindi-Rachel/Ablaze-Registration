@@ -21,6 +21,12 @@ body {
     margin: 15px;
 }
 
+.logo {
+    display: block;
+    margin: 0 auto 15px auto;
+    max-width: 140px;
+}
+
 h2 {
     text-align: center;
     margin-bottom: 15px;
@@ -137,21 +143,20 @@ button:hover {
 /* Mobile responsiveness */
 
 @media (max-width: 600px) {
-    body {
-        align-items: flex-start;
-    }
     .container {
-        margin: 10px;
-        padding: 20px;
-        border-radius: 16px;
+        padding: 18px;
+        border-radius: 14px;
     }
     h2 {
         font-size: 18px;
     }
+    p,
+    label {
+        font-size: 13px;
+    }
     input,
     select,
-    textarea,
-    .dropdown-btn {
+    textarea {
         font-size: 14px;
         padding: 10px;
     }
