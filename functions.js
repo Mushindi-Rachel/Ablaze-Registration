@@ -7,6 +7,24 @@ const mpesaCode = document.getElementById("mpesa-code");
 
 // show/hide payment as before (keep your existing handlers)
 // ...
+accommodation.addEventListener("change", function() {
+    paymentSection.style.display = this.value === "boarder" ? "block" : "none";
+});
+
+paymentMethod.addEventListener("change", function() {
+    if (this.value === "cash") {
+        receiptNo.style.display = "block";
+        mpesaCode.style.display = "none";
+    } else if (this.value === "mpesa") {
+        mpesaCode.style.display = "block";
+        receiptNo.style.display = "none";
+    } else {
+        receiptNo.style.display = "none";
+        mpesaCode.style.display = "none";
+    }
+});
+
+// Submit to Google Script
 
 form.addEventListener("submit", async(e) => {
     e.preventDefault();
