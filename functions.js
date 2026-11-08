@@ -51,7 +51,7 @@ form.addEventListener("submit", async(e) => {
     });
 
     try {
-        const resp = await fetch("https://script.google.com/macros/s/AKfycbyrMcfSuLJJMYlsTsyXYGT1c3Vu0A5Ghi8QaX2F0r0VvxuVLAsnp_mvtCb2YY9PS6XZtg/exec", {
+        const resp = await fetch("https://script.google.com/macros/s/AKfycbxk6uBLvuKnDw_a1SkU5dMX4nVezbGjFB1eb8J8p-wOPY_0fhLEDKO4pO3zw4KLdUkL/exec", {
             method: "POST",
             body: formData
         });
