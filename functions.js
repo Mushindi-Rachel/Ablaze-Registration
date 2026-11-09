@@ -215,15 +215,24 @@ form.addEventListener("submit", async(e) => {
         }
 
         if (result && result.result === "success") {
-            await showAlert({
-                icon: "success",
-                title: "🎉 Registration successful!",
-                text: "Thank you — your registration has been received.",
-                confirmButtonColor: "#e25909",
-            });
+            // Capture the details BEFORE the form is cleared, then show the ticket popup
+            const ticketData = {
+                ticketId: result.ticketId || makeTicketId(), // prefer the ID saved in the sheet
+                name: formData.get("name") || "",
+                phone: formData.get("phone") || "",
+                age: formData.get("age") || "",
+                gender: formData.get("gender") || "",
+                church: formData.get("church") || "",
+                accommodation: formData.get("accommodation") || "",
+                payment: formData.get("payment_method") || "",
+                paymentRef: formData.get("mpesa_code") || formData.get("receipt_no") || "",
+            };
+
             form.reset();
             resetPaymentUI();
             form.querySelectorAll(".touched").forEach((el) => el.classList.remove("touched"));
+
+            await showTicket(ticketData);
         } else {
             throw new Error(
                 (result && typeof result.message === "string" && result.message) ||
