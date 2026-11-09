@@ -1,167 +1,321 @@
+:root {
+    --brand: #e25909;
+    --brand-dark: #c24a05;
+    --brand-light: #ff9800;
+    --ink: #222;
+    --muted: #5a5a5a;
+    --line: #d4d4d4;
+    --error: #c62828;
+    --card: rgba(255, 255, 255, 0.7);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 0;
-    background: linear-gradient(rgba(8, 8, 8, 0.3)), url("images/Ablaze_26.jpeg") no-repeat center center/cover;
-    backdrop-filter: blur(12px);
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding: 24px 12px;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    background-color: #1c1c1c;
+}
+
+
+/* Blurred poster background: stays put while the form scrolls (also works on iPhones).
+   Change the blur() value to make it softer or sharper. */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -40px;
+    /* extends past the screen so the blur has no pale edges */
+    z-index: -1;
+    background: linear-gradient(rgba(8, 8, 8, 0.3), rgba(8, 8, 8, 0.3)), url("images/Ablaze_26.jpeg") no-repeat center center / cover;
+    -webkit-filter: blur(10px);
+    filter: blur(10px);
 }
 
 .container {
     width: 100%;
-    max-width: 550px;
-    padding: 30px;
+    max-width: 560px;
+    padding: 28px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    background: var(--card);
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
-    margin: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Header */
+
+.intro {
+    text-align: center;
+    margin-bottom: 8px;
 }
 
 .logo {
     display: block;
-    margin: 0 auto 15px auto;
-    max-width: 140px;
+    margin: 0 auto 8px;
+    max-width: 120px;
+    height: auto;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #444;
-    font-size: 22px;
+h1 {
+    margin: 0 0 8px;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    color: #333;
 }
 
-p {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 14px;
-    color: #555;
+.lead {
+    margin: 0 0 10px;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.theme {
+    margin: 0 0 6px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--brand-dark);
+}
+
+.theme span {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+
+/* Sections */
+
+.section {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.35);
+    padding: 6px 16px 4px;
+    margin: 18px 0 0;
+}
+
+legend {
+    padding: 0 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.field {
+    margin-bottom: 14px;
 }
 
 label {
-    font-weight: 600;
     display: block;
-    margin: 12px 0 6px;
+    margin: 10px 0 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
     color: #333;
 }
+
+.optional {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+
+/* Inputs: 16px stops iOS from zooming the page on focus */
 
 input,
 select,
 textarea {
     width: 100%;
     padding: 12px;
+    border: 1px solid var(--line);
     border-radius: 10px;
-    border: 1px solid #ccc;
-    margin-bottom: 15px;
-    font-size: 15px;
+    background: #fff;
+    font: inherit;
+    font-size: 16px;
+    color: var(--ink);
 }
 
-input:focus,
-select:focus,
-textarea:focus {
+input::placeholder {
+    color: #9a9a9a;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
     outline: none;
-    border-color: #ff9800;
-    box-shadow: 0 0 8px rgba(255, 152, 0, 0.4);
+    border-color: var(--brand-light);
+    box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.35);
 }
 
-button {
+
+/* Show the error state only after the person has interacted */
+
+.field.touched input:invalid,
+.field.touched select:invalid,
+.field.has-error input,
+.field.has-error select {
+    border-color: var(--error);
+}
+
+.error-text {
+    margin: 4px 0 0;
+    font-size: 0.82rem;
+    color: var(--error);
+}
+
+
+/* Button */
+
+button[type="submit"] {
     width: 100%;
+    margin-top: 22px;
     padding: 14px;
-    background: linear-gradient(135deg, #ff9800, #ff5722);
     border: none;
     border-radius: 12px;
-    color: white;
-    font-size: 16px;
+    background: linear-gradient(135deg, var(--brand-light), var(--brand));
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
-    font-weight: 600;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
-button:hover {
+button[type="submit"]:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
-#successMessage {
-    display: none;
+button[type="submit"]:focus-visible {
+    outline: 3px solid #333;
+    outline-offset: 2px;
+}
+
+button[type="submit"]:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.fineprint {
+    margin: 10px 0 0;
     text-align: center;
-    margin-top: 15px;
-    color: green;
-    font-weight: bold;
+    font-size: 0.8rem;
+    color: var(--muted);
 }
 
 
-/* Dropdown Styles */
+/* Honeypot: off-screen instead of display:none so bots still see it */
 
-.dropdown {
-    position: relative;
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-.dropdown-btn {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background: white;
-    cursor: pointer;
-    text-align: left;
-    font-size: 15px;
-}
-
-.dropdown-content {
-    display: none;
+.hp {
     position: absolute;
-    top: 100%;
-    left: 0;
-    width: 50%;
-    max-height: 220px;
-    overflow-y: auto;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    z-index: 1000;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
-.dropdown-content label {
-    display: block;
-    padding: 10px 12px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.dropdown-content label:hover {
-    background: #f5f5f5;
+[hidden] {
+    display: none !important;
 }
 
 
-/* Mobile responsiveness */
+/* Small screens */
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
+    body {
+        padding: 12px 8px;
+    }
     .container {
-        padding: 18px;
+        padding: 18px 14px;
         border-radius: 14px;
     }
-    h2 {
-        font-size: 18px;
+    h1 {
+        font-size: 1.25rem;
     }
-    p,
-    label {
-        font-size: 13px;
+    .row {
+        grid-template-columns: 1fr;
+        gap: 0;
     }
-    input,
-    select,
-    textarea {
-        font-size: 14px;
-        padding: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
     }
-    button {
-        font-size: 15px;
-        padding: 12px;
-    }
+}
+
+
+/* ---------- Ticket popup ---------- */
+
+.ticket-wrap {
+    margin: 0;
+}
+
+.ticket-preview {
+    display: block;
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    margin: 4px auto 14px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.ticket-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-wa,
+.btn-ghost {
+    flex: 1 1 160px;
+    max-width: 220px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-wa {
+    border: none;
+    background: #25d366;
+    color: #073b1a;
+}
+
+.btn-ghost {
+    border: 2px solid var(--brand);
+    background: transparent;
+    color: var(--brand-dark);
+}
+
+.btn-wa:focus-visible,
+.btn-ghost:focus-visible {
+    outline: 3px solid #333;
+    outline-offset: 2px;
+}
+
+.ticket-hint {
+    margin: 12px 0 0;
+    font-size: 0.85rem;
+    color: var(--muted);
 }

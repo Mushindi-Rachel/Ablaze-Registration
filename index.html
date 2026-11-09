@@ -4,140 +4,159 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Youth Ablaze - 2026 Registration</title>
-    <link rel="stylesheet" href="Styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta name="theme-color" content="#e25909" />
+    <title>Youth Ablaze 2026 | Registration</title>
+    <meta name="description" content="Register for Youth Ablaze 2026 — a conference of faith, growth and fellowship." />
 
+    <!-- Link preview (WhatsApp, Facebook, etc.). WhatsApp needs ABSOLUTE urls here. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Youth Ablaze 2026" />
+    <meta property="og:title" content="Youth Ablaze ’26 Conference | Register now" />
+    <meta property="og:description" content="14–18 December 2026, Kisumu. #Know the God of your Father — 1 Chronicles 28:9" />
+    <meta property="og:url" content="https://mushindi-rachel.github.io/Ablaze-Registration/" />
+    <meta property="og:image" content="https://mushindi-rachel.github.io/Ablaze-Registration/images/og-ticket.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="images/WhatsApp_Image_2025-08-13_at_15.45.58-removebg-preview.png" />
+    <link rel="stylesheet" href="Styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 </head>
 
 <body>
-    <div class="container">
-        <img src="images\WhatsApp_Image_2025-08-13_at_15.45.58-removebg-preview.png" alt="Youth Ablaze Logo" class="logo">
-        <h2>Youth Ablaze -2026 Registration</h2>
-        <p>Join us for an unforgettable experience of faith, growth, and fellowship.</p>
-        <p style="color: #e25909;"><b><i>#Know the God of your Father</i></b></p>
-        <p style="color: #e25909;"><b><i>...1st Chronicles 28:9</i></b></p>
+    <main class="container">
+        <header class="intro">
+            <img src="images/WhatsApp_Image_2025-08-13_at_15.45.58-removebg-preview.png" alt="Youth Ablaze logo" class="logo" width="140" height="140" />
+            <h1>Youth Ablaze 2026 Registration</h1>
+            <p class="lead">Join us for an unforgettable experience of faith, growth and fellowship.</p>
+            <p class="theme">#Know the God of your Father<br /><span>1 Chronicles 28:9</span></p>
+        </header>
 
-        <form id="registrationForm" method="POST">
+        <form id="registrationForm" novalidate>
             <!-- Personal Info -->
-            <div class="section">
-                <h2>Personal Info</h2>
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required />
+            <fieldset class="section">
+                <legend>Personal Info</legend>
 
-                <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" required />
+                <div class="field">
+                    <label for="name">Full name</label>
+                    <input type="text" id="name" name="name" autocomplete="name" required />
+                </div>
 
-                <label for="age">Age</label>
-                <input type="text" id="age" name="age" required />
+                <div class="field">
+                    <label for="phone">Phone number</label>
+                    <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="e.g. 0712345678" required />
+                </div>
 
-
-                <label for="gender">Gender</label>
-                <select id="gender" name="gender" required>
-          <option value="">Select...</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-            </div>
+                <div class="row">
+                    <div class="field">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" inputmode="numeric" min="5" max="99" required />
+                    </div>
+                    <div class="field">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select…</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
 
             <!-- Church Info -->
-            <div class="section">
-                <h2>Church Info</h2>
-                <label for="church">Name of your church</label>
-                <input type="text" id="church" name="church" required />
+            <fieldset class="section">
+                <legend>Church Info</legend>
 
-                <!-- <label>Role in your church? (Select all that apply)</label>
-                <div class="dropdown">
-                    <div class="dropdown-btn" id="roleDropdownBtn">Select roles...</div>
-                    <div class="dropdown-content" id="roleDropdownContent">
-                        <label><input type="checkbox" name="role[]" value="Accommodation"> Accommodation</label>
-                        <label><input type="checkbox" name="role[]" value="Catering"> Catering</label>
-                        <label><input type="checkbox" name="role[]" value="Choir"> Choir</label>
-                        <label><input type="checkbox" name="role[]" value="Hospitality"> Hospitality</label>
-                        <label><input type="checkbox" name="role[]" value="Intercessor"> Intercessor</label>
-                        <label><input type="checkbox" name="role[]" value="Interpreter"> Interpreter</label>
-                        <label><input type="checkbox" name="role[]" value="Media/Technical"> Media / Technical</label>
-                        <label><input type="checkbox" name="role[]" value="Missions"> Missions</label>
-                        <label><input type="checkbox" name="role[]" value="Protocol"> Protocol</label>
-                        <label><input type="checkbox" name="role[]" value="Sanitation"> Sanitation</label>
-                        <label><input type="checkbox" name="role[]" value="Sanitization"> Sanitization</label>
-                        <label><input type="checkbox" name="role[]" value="SundaySchool"> Sunday School Ministry</label>
-                        <label><input type="checkbox" name="role[]" value="Usher"> Usher</label>
-                        <label><input type="checkbox" name="role[]" value="YouthLeader"> Youth Leader</label>
-                        <label><input type="checkbox" name="role[]" value="YouthPastor"> Youth Pastor</label>
-                        <label><input type="checkbox" name="role[]" value="Other"> Other</label>
-                    </div>
-                </div> -->
+                <div class="field">
+                    <label for="church">Name of your church</label>
+                    <input type="text" id="church" name="church" autocomplete="organization" required />
+                </div>
 
-                <label for="pastorname">Pastor's name</label>
-                <input type="text" id="pastorname" name="pastorname" />
+                <div class="field">
+                    <label for="pastorname">Pastor's name <span class="optional">(optional)</span></label>
+                    <input type="text" id="pastorname" name="pastorname" />
+                </div>
 
-                <label for="pastornumber">Pastor's Phone number</label>
-                <input type="tel" id="pastornumber" name="pastornumber" />
-            </div>
+                <div class="field">
+                    <label for="pastornumber">Pastor's phone number <span class="optional">(optional)</span></label>
+                    <input type="tel" id="pastornumber" name="pastornumber" inputmode="tel" placeholder="e.g. 0712345678" />
+                </div>
+            </fieldset>
 
             <!-- Accommodation -->
-            <div class="section">
-                <h2>Accommodation</h2>
-                <label for="accommodation">Accommodation</label>
-                <select id="accommodation" name="accommodation" required>
-          <option value="">-- Select --</option>
-          <option value="boarder">Boarder</option>
-          <option value="dayscholar">Day Scholar</option>
-        </select>
+            <fieldset class="section">
+                <legend>Accommodation</legend>
 
-                <!-- Payment Section -->
-                <div class="form-group" id="payment-section" style="display: none;">
-                    <label>Payment Method</label>
-                    <select id="payment-method" name="payment_method">
-            <option value="">-- Select --</option>
-            <option value="mpesa">M-Pesa</option>
-            <option value="cash">Cash</option>
-          </select>
-                    <input type="text" id="receipt_no" name="receipt_no" placeholder="Enter Receipt Number" style="display: none; margin-top: 10px;">
-                    <input type="text" id="mpesa-code" name="mpesa_code" placeholder="Enter M-Pesa Code" style="display: none; margin-top: 10px;">
+                <div class="field">
+                    <label for="accommodation">Will you be a boarder or a day scholar?</label>
+                    <select id="accommodation" name="accommodation" required>
+                        <option value="">Select…</option>
+                        <option value="boarder">Boarder</option>
+                        <option value="dayscholar">Day Scholar</option>
+                    </select>
                 </div>
-            </div>
 
-            <label for="allergy">Allergies</label> (specify any allergies if applicable)
-            <input type="text" id="allergy" name="allergy" />
+                <!-- Payment (boarders only) -->
+                <div id="payment-section" hidden>
+                    <div class="field">
+                        <label for="payment-method">Payment method</label>
+                        <select id="payment-method" name="payment_method">
+                            <option value="">Select…</option>
+                            <option value="mpesa">M-Pesa</option>
+                            <option value="cash">Cash</option>
+                        </select>
+                    </div>
 
-            <!-- Emergency -->
-            <div class="section">
-                <h2>Emergency Contact</h2>
-                <label for="Ename">Name</label>
-                <input type="text" id="Ename" name="Ename" required />
+                    <div class="field" id="receipt-field" hidden>
+                        <label for="receipt_no">Receipt number</label>
+                        <input type="text" id="receipt_no" name="receipt_no" placeholder="Enter receipt number" autocomplete="off" />
+                    </div>
 
-                <label for="Ephone">Phone</label>
-                <input type="tel" id="Ephone" name="Ephone" required />
-            </div>
-
-            <!-- Feedback -->
-            <!-- <div class="section">
-                <h2>Feedback</h2>
-                <label for="heard">How did you know about the conference?</label>
-                <div class="dropdown">
-                    <div class="dropdown-btn" id="heardDropdownBtn">Select...</div>
-                    <div class="dropdown-content" id="heardDropdownContent">
-                        <label><input type="checkbox" name="heard[]" value="ChurchAnnouncement"> Church Announcement</label>
-                        <label><input type="checkbox" name="heard[]" value="Friend"> A Friend</label>
-                        <label><input type="checkbox" name="heard[]" value="Attending"> I've Been Attending</label>
-                        <label><input type="checkbox" name="heard[]" value="SocialMedia"> Social Media</label>
-                        <label><input type="checkbox" name="heard[]" value="RVTV"> RVTV</label>
-                        <label><input type="checkbox" name="heard[]" value="Other"> Other</label>
+                    <div class="field" id="mpesa-field" hidden>
+                        <label for="mpesa-code">M-Pesa transaction code</label>
+                        <input type="text" id="mpesa-code" name="mpesa_code" placeholder="e.g. SJK4XXXXXX" maxlength="10" autocomplete="off" autocapitalize="characters" />
                     </div>
                 </div>
+            </fieldset>
 
-                <label for="message">Why are you excited to attend?</label>
-                <textarea id="message" name="message" rows="4"></textarea>
-            </div> -->
+            <!-- Health -->
+            <fieldset class="section">
+                <legend>Health</legend>
+                <div class="field">
+                    <label for="allergy">Allergies <span class="optional">(write "None" if not applicable)</span></label>
+                    <input type="text" id="allergy" name="allergy" placeholder="None" />
+                </div>
+            </fieldset>
 
-            <button type="submit">Register Now</button>
+            <!-- Emergency -->
+            <fieldset class="section">
+                <legend>Emergency Contact</legend>
 
+                <div class="field">
+                    <label for="Ename">Contact name</label>
+                    <input type="text" id="Ename" name="Ename" required />
+                </div>
+
+                <div class="field">
+                    <label for="Ephone">Contact phone number</label>
+                    <input type="tel" id="Ephone" name="Ephone" inputmode="tel" placeholder="e.g. 0712345678" required />
+                </div>
+            </fieldset>
+
+            <!-- Honeypot: hidden from people, bots tend to fill it in -->
+            <div class="hp" aria-hidden="true">
+                <label for="website">Leave this field empty</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <button type="submit" id="submitBtn">Register Now</button>
+            <p class="fineprint">Fields marked required must be filled before you can submit.</p>
         </form>
-    </div>
+    </main>
 
-    <script src="functions.js"></script>
+    <script src="ticket.js" defer></script>
+    <script src="functions.js" defer></script>
 </body>
 
 </html>
