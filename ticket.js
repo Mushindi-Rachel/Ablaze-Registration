@@ -17,7 +17,7 @@ const EVENT = {
 
 // The ticket is meant to be shared on WhatsApp, so private details are partly hidden.
 // Set to true if you want the full phone number printed on the ticket.
-const SHOW_FULL_PHONE = false;
+const SHOW_FULL_PHONE = true;
 
 // Logo is embedded (not loaded from a file) so the ticket can always be exported, even when
 // the page is opened straight from a folder on a computer.
